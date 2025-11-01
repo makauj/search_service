@@ -11,7 +11,10 @@ DEFAULT_POMODOROS_PER_CYCLE = 4
 
 
 def clear_console() -> None:
-    """Clears the terminal screen."""
+    """
+    Clears the terminal screen.
+    This function uses the appropriate command based on the operating system.
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -122,6 +125,11 @@ def run_pomodoro(
 
 
 def parse_args() -> argparse.Namespace:
+    """
+    Parses command line arguments for the Pomodoro timer.
+    Returns:
+        argparse.Namespace: Parsed command line arguments.
+    """
     parser = argparse.ArgumentParser(description="Simple terminal Pomodoro timer.")
     parser.add_argument("--work", type=int, default=DEFAULT_WORK_MIN, help="Work duration in minutes (default: 25)")
     parser.add_argument("--short", type=int, default=DEFAULT_SHORT_BREAK_MIN, help="Short break duration in minutes (default: 5)")
