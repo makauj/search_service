@@ -2,6 +2,7 @@
 #define HASH_TABLE_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 /**
  * This is a simple struct in C
@@ -30,24 +31,16 @@ typedef struct HashTable {
     int size;
 } HashTable;
 
-/**
- * This is a typedef for uint32_t
- * It contains: an unsigned int value
- */
-typedef struct uint32_t {
-    unsigned int value;
-} uint32_t;
+typedef uint32_t (*HashFunction)(int key);
 
-
-typedef unsigned int (*HashFunction)(const char* str);
-unsigned int simple_hash(const char* str);
-unsigned int djb_hash(const char* str);
-unsigned int sdbm_hash(const char* str);
-unsigned int murmur_hash(const char* str);
+uint32_t simple_hash(const char* str);
+uint32_t djb_hash(const char* str);
+uint32_t sdbm_hash(const char* str);
+uint32_t murmur_hash(const char* str);
 HashTable* create_table(int size);
 void free_table(HashTable* ht);
 int insert(HashTable* ht, const char* key, int value, HashFunction hash_func);
 int search(HashTable* ht, const char* key, HashFunction hash_func);
-int delete(HashTable* ht, const char* key, HashFunction hash_func);
+int delete(HashTable* ht, HashFunction hash_func);
 
 #endif // HASH_TABLE_H
