@@ -99,9 +99,12 @@ unsigned int murmur_hash(const char *str)
 
 	while ((c = *str++))
 	{
-		hash ^= c;
+		hash ^= c; // XOR the current hash with the current character
+		// XOR operation helps in mixing the bits
 		hash *= 0x5bd1e995; // 0x5bd1e995 is a prime number
+		// Multiplying by a prime number helps in spreading out the hash values
 		hash ^= hash >> 15; // Mix the bits by shifting right by 15 bits
+		// This helps in further reducing collisions
 		// This is a common technique in hash functions to reduce collisions
 	}
 	return hash;
